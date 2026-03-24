@@ -1,0 +1,236 @@
+
+- Jeu multijoueur en ligne, chaque joueur crée et **personnalise son pays**.  
+- Tout le monde commence sur une **petite zone circulaire** sur une carte du monde stylisée.  
+- On **explore et étend** son territoire avec éclaireurs et soldats.  
+- Chaque zone à conquérir est **différente** et demande un certain nombre de soldats pour être “déverrouillée”, avec une part d’aléatoire.  
+- Les joueurs sont répartis automatiquement sur **au moins 3 serveurs**, gérés côté backend (tu parles de Supabase).  
+- Vue principale : **carte du monde** avec bons graphismes type jeu vidéo + menus intuitifs mais très complets.  
+- Style : **réaliste**, progression au fur et à mesure, avec **tutoriel de début**.
+
+C’est un mélange entre simulateur de président, 4X/stratégie et MMO de gestion : très ambitieux, mais on peut le découper.
+
+***
+
+## 2. Mécanique principale : territoire et serveurs
+
+### Territoire
+
+- Départ :  
+  - Chaque joueur commence avec un **petit cercle** (territoire de base).  
+  - Ce cercle contient la capitale + quelques bâtiments de départ (gouvernement, petite centrale, route, 1 ou 2 usines).
+
+- Extension du territoire :  
+  - Tu envoies des **éclaireurs** pour révéler les zones voisines (brouillard de guerre).  
+  - Chaque zone révélée a :
+    - Un **type de terrain** (plaine, montagne, désert, ville, forêt…).  
+    - Un **coût en soldats** (par ex. 10 soldats pour une plaine, 50 pour une montagne).  
+    - Des **bonus/malus** (sol riche en fer, zone instable politiquement, etc.).
+  - Tu dois envoyer **au moins X soldats** pour la capturer.  
+  - Une part **aléatoire** peut ajouter des événements : rébellion locale, découverte de ressource rare, etc.
+
+### Serveurs / sessions
+
+- À la création du compte, le joueur est **attribué automatiquement** à un serveur (ex. Europe-1, Europe-2, Monde-1).  
+- Objectif minimum : **3 serveurs distincts** pour répartir les joueurs.  
+- Tu peux prévoir :  
+  - Un serveur “normal” (progression standard).  
+  - Un serveur “rapide” (vitesse de jeu x2).  
+  - Un serveur “hardcore” (guerres plus difficiles, économie plus dure).
+
+***
+
+## 3. Économie : ce que tu as + ressources à ajouter
+
+Tu as déjà :
+
+- Impôts.  
+- Budget de l’État (PIB de départ 1,6K).  
+- Prêts (entre joueurs).  
+- Dette (liée à tes choix : ouvriers, militaires, projets).  
+- Ressources :  
+  - Nourriture  
+  - Pétrole  
+  - Fer  
+  - Uranium  
+  - Or  
+  - Moteurs  
+  - Pièces mécaniques  
+  - Poudre de TNT  
+  - Plastique  
+  - Eau  
+  - Ressources militaires (munitions, matériel, etc.)
+
+Je te propose **10 ressources supplémentaires réalistes** :
+
+1. Charbon  
+2. Gaz naturel  
+3. Cuivre  
+4. Aluminium  
+5. Ciment  
+6. Bois (de construction)  
+7. Verre  
+8. Microcomposants / puces électroniques  
+9. Médicaments / produits pharmaceutiques  
+10. Engrais
+
+Idée importante : **tout est échangeable entre joueurs** (marché mondial, contrats privés, alliances).
+
+***
+
+## 4. Développement : bâtiments et domaines
+
+Tu as déjà :
+
+- Usines  
+- Mines  
+- Centrales électriques :  
+  - Nucléaire  
+  - Éolienne  
+  - “Éolienne à eau” → on peut plutôt dire barrage hydraulique  
+  - Stockage électrique  
+  - Centrale thermique  
+- Écoles  
+- Universités  
+- Collèges  
+- Hôpitaux  
+- Police  
+- Routes  
+- Usines de béton  
+- Usine de bois  
+- Usine de pétrole (militaire)  
+- Centre de recherche
+
+Je te propose **10 bâtiments / structures supplémentaires** :
+
+1. Port commercial  
+2. Aéroport civil  
+3. Base militaire terrestre  
+4. Base navale  
+5. Laboratoire de haute technologie  
+6. Centre spatial  
+7. Centre de données / serveur national  
+8. Banque centrale  
+9. Media center (TV/Radio nationale)  
+10. Parlement / Assemblée nationale
+
+### Domaines à améliorer (stats du pays)
+
+- Économie  
+- Éducation  
+- Santé  
+- Infrastructures  
+- Recherche & technologie  
+- Militaire  
+- Sécurité intérieure  
+- Environnement  
+- Satisfaction de la population  
+- Corruption / transparence  
+- Diplomatie / réputation internationale
+
+Chaque bâtiment améliore certains domaines et consomme des ressources/énergie.
+
+***
+
+## 5. Armée et espace
+
+### Armée
+
+Tu veux “tous les types d’armées existantes”, on peut les regrouper par **branches** :
+
+- Armée de terre : infanterie, blindés, artillerie.  
+- Armée de l’air : avions de chasse, bombardiers, drones.  
+- Marine : navires, sous-marins, porte-avions.  
+- Forces spéciales.  
+- Défense anti-aérienne.  
+- Cyberarmée (attaque/défense numérique).  
+
+Chaque type d’unité :
+
+- Coût en ressources (moteurs, pièces, TNT, métal, etc.).  
+- Coût en entretien (argent, carburant).  
+- Temps de production.  
+
+### Armée spatiale et espace
+
+- Nouvelle branche : **Armée spatiale**.  
+  - Satellites de reconnaissance.  
+  - Satellites de communication.  
+  - Systèmes d’alerte missile.  
+- Développement spatial :  
+  - Lancement de fusées.  
+  - Stations sur orbite.  
+  - Exploitation d’astéroïdes (nouvelles ressources rares).  
+
+Tu pourras ajouter des ressources spéciales pour l’espace : composants avancés, hélium-3, matériaux composites, etc.
+
+***
+
+## 6. Diplomatie et alliances
+
+- Chaque joueur peut créer **ses propres alliances personnalisées**.  
+- Un joueur peut appartenir à **plusieurs alliances** (avec règles de conflit possibles : si deux alliances se déclarent la guerre et que tu es dans les deux, tu dois choisir, etc.).  
+- Tu veux au moins **45 fonctionnalités d’alliance** : c’est beaucoup, mais on peut les regrouper en catégories :
+
+Exemples de fonctions d’alliance (on ne les liste pas toutes 45 ici, mais tu pourras les décliner) :
+
+- Militaire  
+  - Pacte de défense mutuelle.  
+  - Bases militaires partagées.  
+  - Recherche militaire commune.  
+  - Interdiction d’attaquer les membres.
+
+- Économie  
+  - Marché commun (moins de taxes entre membres).  
+  - Fonds de secours (aide automatique en cas de crise).  
+  - Projets d’infrastructure communs (pipeline, réseau électrique).
+
+- Politique  
+  - Votes communs à l’ONU / organisation internationale.  
+  - Sanctions coordonnées contre un pays.  
+  - Embargo partagé.
+
+- Gestion interne d’alliance  
+  - Rôle de chef, co-chef, ministre économique, ministre défense.  
+  - Vote des membres pour accepter ou exclure un pays.  
+  - Messages / annonces internes, journal d’événements.
+
+***
+
+## 7. Politique intérieure et extérieure
+
+Tu veux “tout type de politique intérieure” + extérieure, avec **interface simple mais hyper complète**.
+
+### Politique intérieure (exemples)
+
+- Lois sur :  
+  - Impôts (taux différents pour entreprises, citoyens).  
+  - Santé (assurance publique/privée, budget).  
+  - Éducation (gratuite, payante, niveau d’investissement).  
+  - Sécurité (police, caméras, lois anti-criminalité).  
+  - Libertés civiles (censure, liberté de presse, surveillance).  
+
+- Élections  
+  - Système démocratique, autoritaire ou mixte.  
+  - Popularité du président.  
+  - Promesses de campagne, sondages.  
+
+### Politique extérieure
+
+- Reconnaissance diplomatique d’autres joueurs.  
+- Ambassades, traités, accords de paix.  
+- Guerre froide, espionnage, cyberattaques.  
+- Participation à des organisations internationales (ONU, alliances régionales, etc.).  
+
+***
+
+## 8. Tutoriel et progression
+
+- **Tutoriel de début** obligatoire, vu la complexité :  
+  - Étape 1 : gérer ton premier budget.  
+  - Étape 2 : construire ta première centrale et une mine.  
+  - Étape 3 : recruter des soldats et capturer une zone voisine.  
+  - Étape 4 : faire un premier échange commercial.  
+  - Étape 5 : signer ta première alliance / traité.
+
+- Progression :  
+  - Déblocage de nouveaux bâtiments, types d’unités et options politiques au fur et à mesure (système d’“âge” ou de “niveau” de pays)
